@@ -276,13 +276,21 @@
   transition: transform 0.2s ease;
   width: 16px;
   height: 16px;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-.submenu-toggle.active .nav-arrow {
-  transform: rotate(180deg);
+.nav-arrow i {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+}
+
+.submenu-toggle.active .nav-arrow i {
+  color: white;
 }
 
 /* Submenu List Styles */

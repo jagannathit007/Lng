@@ -77,8 +77,8 @@
                   </div>
                   <span class="nav-text">{{ item.title }}</span>
                   <div class="nav-arrow">
-                    <i class="align-middle" 
-                       [attr.data-feather]="sideBarService.activeSubMenuIndex === i ? 'chevron-up' : 'chevron-down'"></i>
+                    <i class="bi" 
+                       [ngClass]="sideBarService.activeSubMenuIndex === i ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
                   </div>
                 </a>
                 
