@@ -124,7 +124,7 @@
           <div *ngIf="!loading" class="row g-4">
             <!-- Users Card -->
             <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
+              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card clickable-card" (click)="navigateToUsers()">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-3">
                     <div class="metric-icon bg-primary">
@@ -172,7 +172,7 @@
 
             <!-- Referrals Card -->
             <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
+              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card clickable-card" (click)="navigateToReferrals()">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-3">
                     <div class="metric-icon bg-info">
@@ -191,7 +191,7 @@
 
             <!-- TYFCBs Card -->
             <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
+              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card clickable-card" (click)="navigateToTYFCBs()">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-3">
                     <div class="metric-icon bg-warning">
@@ -210,7 +210,7 @@
 
             <!-- One-to-Ones Card -->
             <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
+              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card clickable-card" (click)="navigateToOneToOnes()">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-3">
                     <div class="metric-icon bg-primary">
@@ -229,7 +229,7 @@
 
             <!-- Testimonials Card -->
             <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
+              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card clickable-card" (click)="navigateToTestimonials()">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-3">
                     <div class="metric-icon bg-success">
@@ -248,7 +248,7 @@
 
             <!-- Testimonial Requests Card -->
             <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
+              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card clickable-card" (click)="navigateToTestimonialRequests()">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-3">
                     <div class="metric-icon bg-danger">
@@ -264,7 +264,7 @@
 
             <!-- Banners Card -->
             <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
+              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card clickable-card" (click)="navigateToBanners()">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-3">
                     <div class="metric-icon bg-info">
@@ -280,7 +280,7 @@
 
             <!-- Events Card -->
             <div class="col-md-6 col-lg-4 col-xl-3">
-              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
+              <div class="card border-0 shadow-sm rounded-4 h-100 metric-card clickable-card" (click)="navigateToEvents()">
                 <div class="card-body">
                   <div class="d-flex align-items-center mb-3">
                     <div class="metric-icon bg-warning">

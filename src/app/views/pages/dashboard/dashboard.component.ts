@@ -159,6 +159,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DashboardService, DashboardCounts, DashboardResponse, ChapterService, Chapter  } from '../../../services/auth.service';
 // Import ChapterService
 import { swalHelper } from '../../../core/constants/swal-helper';
@@ -195,7 +196,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private dashboardService: DashboardService,
-    private chapterService: ChapterService // Replace CityService with ChapterService
+    private chapterService: ChapterService, // Replace CityService with ChapterService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -269,5 +271,38 @@ export class DashboardComponent implements OnInit {
   clearToDate(): void {
     this.toDate = '';
     this.loadDashboardCounts();
+  }
+
+  // Navigation methods
+  navigateToUsers(): void {
+    this.router.navigate(['/users']);
+  }
+
+  navigateToReferrals(): void {
+    this.router.navigate(['/referralReport']);
+  }
+
+  navigateToTYFCBs(): void {
+    this.router.navigate(['/tyfcb']);
+  }
+
+  navigateToOneToOnes(): void {
+    this.router.navigate(['/oneTooneReport']);
+  }
+
+  navigateToTestimonials(): void {
+    this.router.navigate(['/testimonialReport']);
+  }
+
+  navigateToTestimonialRequests(): void {
+    this.router.navigate(['/testimonialReport']);
+  }
+
+  navigateToBanners(): void {
+    this.router.navigate(['/banners']);
+  }
+
+  navigateToEvents(): void {
+    this.router.navigate(['/events']);
   }
 }

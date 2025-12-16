@@ -140,6 +140,10 @@ h2 {
   overflow: hidden;
 }
 
+.clickable-card {
+  cursor: pointer;
+}
+
 .metric-card::before {
   content: '';
   position: absolute;
