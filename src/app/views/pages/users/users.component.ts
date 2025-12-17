@@ -186,6 +186,22 @@ export class UsersComponent implements OnInit, AfterViewInit {
   openAddChapterModal(user: any): void {
     this.selectedUser = user;
     this.selectedChapterForAdd = null;
+    
+    // Pre-select user's primary chapter or first chapter if available
+    if (user && user.chapter_memberships && Array.isArray(user.chapter_memberships) && user.chapter_memberships.length > 0) {
+      // Find primary chapter first
+      const primaryMembership = user.chapter_memberships.find((m: any) => m.is_primary === true);
+      if (primaryMembership && primaryMembership.chapter_name) {
+        this.selectedChapterForAdd = primaryMembership.chapter_name;
+      } else if (user.chapter_memberships[0] && user.chapter_memberships[0].chapter_name) {
+        // If no primary, select first chapter
+        this.selectedChapterForAdd = user.chapter_memberships[0].chapter_name;
+      }
+    } else if (user && user.chapter_name) {
+      // Fallback to legacy chapter_name field
+      this.selectedChapterForAdd = user.chapter_name;
+    }
+    
     this.fetchAllChaptersForAdd();
     
     if (this.addChapterModal) {

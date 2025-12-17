@@ -833,6 +833,19 @@
         <div *ngIf="selectedUser" class="mb-3">
           <p class="text-muted mb-2">User: <strong>{{selectedUser.name}}</strong></p>
           <p class="text-muted small">Select a chapter to add to this user's memberships.</p>
+          <!-- Show existing chapters -->
+          <div *ngIf="selectedUser.chapter_memberships && selectedUser.chapter_memberships.length > 0" class="mt-2 mb-3">
+            <p class="text-muted small mb-1"><strong>Current Chapters:</strong></p>
+            <div class="d-flex flex-wrap gap-1">
+              <span *ngFor="let membership of selectedUser.chapter_memberships" 
+                    class="badge" 
+                    [ngClass]="membership.is_primary ? 'bg-primary' : 'bg-secondary'"
+                    [title]="membership.is_primary ? 'Primary Chapter' : 'Additional Chapter'">
+                {{membership.chapter_name}}
+                <i *ngIf="membership.is_primary" class="bi bi-star-fill ms-1"></i>
+              </span>
+            </div>
+          </div>
         </div>
         <form>
           <div class="mb-3">
