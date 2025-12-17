@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseURL: 'http://localhost:2027',
+  baseURL: 'https://lng.itfuturz.in',
   route: 'admin',
   imageUrl:'https://lng.itfuturz.in/'
   };

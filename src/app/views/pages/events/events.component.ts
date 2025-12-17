@@ -6,13 +6,14 @@ import { EventService, Event, ChapterService, Chapter } from '../../../services/
 import { swalHelper } from '../../../core/constants/swal-helper';
 import { environment } from 'src/env/env.local';
 import * as QRCode from 'qrcode';
+import { DigitOnlyDirective } from '../../../core/directives/digit-only';
 
 declare var bootstrap: any;
 
 @Component({
     selector: 'app-events',
     standalone: true,
-    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, DigitOnlyDirective],
     templateUrl: './events.component.html',
     styleUrls: ['./events.component.css']
 })
@@ -63,7 +64,7 @@ export class EventsComponent implements OnInit, AfterViewInit {
             name: ['', [Validators.required, Validators.minLength(3)]],
             date: ['', Validators.required],
             startTime: [''],
-            amount: [0],
+            amount: ['', [Validators.pattern(/^\d{0,7}$/)]],
             endTime: [''],
             mode: ['online'],
             event_or_meeting: ['', Validators.required],
@@ -184,7 +185,7 @@ export class EventsComponent implements OnInit, AfterViewInit {
             date: '',
             startTime: '',
             endTime: '',
-            amount: 0,
+            amount: '',
             mode: 'online',
             event_or_meeting: '',
             paid: false,
@@ -209,7 +210,7 @@ export class EventsComponent implements OnInit, AfterViewInit {
             mode: event.mode || 'online',
             event_or_meeting: event.event_or_meeting,
             paid: event.paid,
-            amount: event.amount || 0,
+            amount: event.amount ? event.amount.toString() : '',
             location: event.location,
             chapter_name: event.chapter_name || '',
             mapURL: event.mapURL || '',
@@ -313,6 +314,23 @@ export class EventsComponent implements OnInit, AfterViewInit {
     }
 
     async saveEvent(): Promise<void> {
+        // Validate amount if paid event
+        if (this.eventForm.get('paid')?.value) {
+            const amountValue = this.eventForm.get('amount')?.value;
+            if (!amountValue || amountValue.toString().trim() === '') {
+                this.eventForm.get('amount')?.setErrors({ required: true });
+                this.eventForm.markAllAsTouched();
+                swalHelper.showToast('Amount is required for paid events', 'warning');
+                return;
+            }
+            if (amountValue.toString().length > 7) {
+                this.eventForm.get('amount')?.setErrors({ maxlength: { requiredLength: 7, actualLength: amountValue.toString().length } });
+                this.eventForm.markAllAsTouched();
+                swalHelper.showToast('Amount cannot exceed 7 digits', 'warning');
+                return;
+            }
+        }
+
         if (!this.canSaveEvent()) {
             this.eventForm.markAllAsTouched();
             swalHelper.showToast('Please fill all required fields correctly', 'warning');
@@ -326,6 +344,9 @@ export class EventsComponent implements OnInit, AfterViewInit {
             Object.keys(this.eventForm.value).forEach(key => {
                 if (key === 'paid') {
                     formData.append(key, this.eventForm.get(key)?.value.toString());
+                } else if (key === 'amount') {
+                    const amountValue = this.eventForm.get(key)?.value;
+                    formData.append(key, amountValue ? amountValue.toString() : '0');
                 } else if (key === 'chapter_name' && this.eventForm.get(key)?.value === '') {
                     formData.append(key, 'All');
                 } else {

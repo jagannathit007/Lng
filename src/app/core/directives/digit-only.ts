@@ -9,6 +9,7 @@ import {
 
 @Directive({
   selector: '[digitOnly]',
+  standalone: true,
 })
 export class DigitOnlyDirective implements OnChanges {
   private hasDecimalPoint = false;

@@ -42,8 +42,8 @@
         <table class="table table-hover align-middle mb-0">
           <thead class="bg-light">
             <tr>
-              <th class="ps-4 py-3">Categories Name</th>
-              <th class="py-3">Industry</th>
+              <th class="ps-4 py-3" style="max-width: 350px;">Categories Name</th>
+              <th class="py-3" style="max-width: 250px;">Industry</th>
               <th class="py-3">Status</th>
               <th class="py-3">Created At</th>
               <th class="text-end pe-4 py-3">Action</th>
@@ -54,21 +54,23 @@
               *ngFor="let subCategory of subCategories.docs | paginate: { itemsPerPage: payload.limit, currentPage: payload.page, totalItems: subCategories.totalDocs }; let i = index"
               class="border-bottom"
             >
-              <td class="ps-4 py-3">
+              <td class="ps-4 py-3" style="max-width: 350px;">
                 <div class="d-flex align-items-center">
                   <div
-                    class="bg-gradient-primary rounded-circle me-3 d-flex align-items-center justify-content-center shadow-sm border-2 border-white"
+                    class="bg-gradient-primary rounded-circle me-3 d-flex align-items-center justify-content-center shadow-sm border-2 border-white flex-shrink-0"
                     style="width: 40px; height: 40px; color: white;"
                   >
                     {{ subCategory.name ? subCategory.name.charAt(0).toUpperCase() : 'S' }}
                   </div>
-                  <div>
-                    <div class="fw-bold text-dark">{{ subCategory.name }}</div>
+                  <div class="flex-grow-1 min-w-0">
+                    <div class="fw-bold text-dark subcategory-name-truncate" [title]="subCategory.name">{{ subCategory.name }}</div>
                     <small class="text-muted d-block">ID: {{ subCategory._id ? subCategory._id.substring(0, 8) : 'N/A' }}</small>
                   </div>
                 </div>
               </td>
-              <td class="py-3">{{ subCategory.category_name || 'Unknown' }}</td>
+              <td class="py-3" style="max-width: 250px;">
+                <div class="industry-name-truncate" [title]="subCategory.category_name || 'Unknown'">{{ subCategory.category_name || 'Unknown' }}</div>
+              </td>
               <td class="py-3">
                 <span
                   class="badge rounded-pill"

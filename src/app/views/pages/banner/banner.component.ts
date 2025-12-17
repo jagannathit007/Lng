@@ -8,6 +8,7 @@ import { swalHelper } from '../../../core/constants/swal-helper';
 import { debounceTime, Subject } from 'rxjs';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DigitOnlyDirective } from '../../../core/directives/digit-only';
 declare var bootstrap: any;
 declare var $: any;
 
@@ -15,7 +16,7 @@ declare var $: any;
 @Component({
   selector: 'app-banners',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgxPaginationModule, NgSelectModule],
+  imports: [CommonModule, FormsModule, NgxPaginationModule, NgSelectModule, DigitOnlyDirective],
   providers: [BannerService],
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.css'],
@@ -307,6 +308,17 @@ export class BannersComponent implements OnInit, AfterViewInit {
           swalHelper.showToast('Please enter a valid URL (must start with http:// or https://)', 'warning');
           return;
         }
+      }
+
+      // Validate contact number (max 10 digits)
+      if (this.newBanner.contact && this.newBanner.contact.trim()) {
+        const contactNumber = this.newBanner.contact.trim().replace(/\D/g, ''); // Remove non-digits
+        if (contactNumber.length > 10) {
+          swalHelper.showToast('Contact number should not exceed 10 digits', 'warning');
+          return;
+        }
+        // Update the contact to only digits
+        this.newBanner.contact = contactNumber;
       }
 
       // Validate date range

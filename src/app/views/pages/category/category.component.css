@@ -59,3 +59,55 @@
   .modal-footer {
     border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
+
+  /* Text ellipsis for category names */
+  .category-name-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    display: block;
+  }
+
+  /* Ensure table cell doesn't overflow text content */
+  .table td {
+    position: relative;
+  }
+
+  /* Text cells can have overflow hidden for ellipsis */
+  .table td:not(:last-child) {
+    overflow: hidden;
+  }
+
+  /* Action column must allow dropdown to overflow */
+  .table td:last-child {
+    overflow: visible !important;
+    position: relative;
+  }
+
+  /* Make sure flex items respect min-width */
+  .min-w-0 {
+    min-width: 0;
+  }
+  
+  .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+
+  /* Fix dropdown z-index and overflow issues */
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute !important;
+    z-index: 1050 !important;
+    margin-top: 0.125rem;
+  }
+
+  /* Ensure table-responsive allows dropdown to show */
+  .table-responsive {
+    overflow-x: auto;
+    overflow-y: visible;
+    position: relative;
+  }
