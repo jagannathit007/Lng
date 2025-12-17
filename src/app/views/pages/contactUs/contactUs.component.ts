@@ -5,6 +5,7 @@ import { environment } from 'src/env/env.local';
 
 import { ContactUsService, ContactUs } from '../../../services/auth.service';
 import { swalHelper } from '../../../core/constants/swal-helper';
+import { DigitOnlyDirective } from '../../../core/directives/digit-only';
 
 declare var bootstrap: any;
 declare var $: any;
@@ -12,7 +13,7 @@ declare var $: any;
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DigitOnlyDirective],
   providers: [ContactUsService],
   templateUrl: './contactUs.component.html',
   styleUrls: ['./contactUs.component.css'],
@@ -281,6 +282,15 @@ export class ContactUsComponent implements OnInit, AfterViewInit {
         swalHelper.showToast('Please enter mobile number', 'warning');
         return;
       }
+
+      // Validate mobile number (max 10 digits)
+      const mobileNumber = this.editContact.mobile_number.trim().replace(/\D/g, ''); // Remove non-digits
+      if (mobileNumber.length > 10) {
+        swalHelper.showToast('Mobile number should not exceed 10 digits', 'warning');
+        return;
+      }
+      // Update the mobile number to only digits
+      this.editContact.mobile_number = mobileNumber;
 
       this.loading = true;
 

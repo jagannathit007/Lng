@@ -206,6 +206,12 @@ export class ParticipationComponent implements OnInit {
     return `${year}-${month}-${day}`;
   }
 
+  isUrl(str: string | undefined | null): boolean {
+    if (!str) return false;
+    const urlPattern = /^(https?:\/\/|www\.)/i;
+    return urlPattern.test(str);
+  }
+
   async exportToExcel(): Promise<void> {
     try {
       this.exporting = true;

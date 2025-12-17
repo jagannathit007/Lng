@@ -209,11 +209,17 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="contactMobile" class="form-label">Mobile Number <span class="text-danger">*</span></label>
-                <input type="tel" class="form-control" id="contactMobile" placeholder="Enter mobile number" 
-                      [(ngModel)]="editContact.mobile_number" name="contactMobile" required #mobileInput="ngModel"
+                <input type="text" class="form-control" id="contactMobile" placeholder="Enter mobile number (max 10 digits)" 
+                      [(ngModel)]="editContact.mobile_number" name="contactMobile" 
+                      digitOnly 
+                      maxlength="10"
+                      pattern="[0-9]*"
+                      required 
+                      #mobileInput="ngModel"
                       [class.is-invalid]="mobileInput.invalid && (mobileInput.dirty || mobileInput.touched || formSubmitted)">
                 <div class="invalid-feedback" *ngIf="mobileInput.invalid && (mobileInput.dirty || mobileInput.touched || formSubmitted)">
-                  Mobile number is required.
+                  <span *ngIf="mobileInput.errors?.['required']">Mobile number is required.</span>
+                  <span *ngIf="mobileInput.errors?.['maxlength']">Mobile number cannot exceed 10 digits.</span>
                 </div>
               </div>
               

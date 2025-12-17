@@ -40,4 +40,53 @@
   .modal-header.bg-gradient-primary {
     background: linear-gradient(135deg, #4e73df 0%, #224abe 100%)
   }
+
+  /* Location full text display */
+  .table td:nth-child(6) {
+    word-break: break-all;
+    word-wrap: break-word;
+    max-width: 400px;
+  }
+
+  .table td a {
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+  /* Table improvements */
+  .table thead th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    color: #495057;
+  }
+
+  .table tbody td {
+    vertical-align: middle;
+  }
+
+  /* Better hover effect */
+  .table-hover > tbody > tr:hover {
+    background-color: rgba(78, 115, 223, 0.08);
+    transition: background-color 0.2s ease;
+  }
+
+  /* Form label styling */
+  .form-label {
+    font-size: 0.875rem;
+    color: #495057;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .table-responsive {
+      font-size: 0.875rem;
+    }
+    
+    .btn-sm {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+    }
+  }
     

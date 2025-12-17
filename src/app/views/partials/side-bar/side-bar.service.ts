@@ -153,11 +153,11 @@ export class SideBarService {
               link: 'attendanceRecord',
               icon: 'clipboard',
             },
-            {
-              title: 'task History',
-              link: 'taskHistory',
-              icon: 'clipboard',
-            },
+            // {
+            //   title: 'task History',
+            //   link: 'taskHistory',
+            //   icon: 'clipboard',
+            // },
             {
               title: 'Fees Record',
               link: 'fees',
